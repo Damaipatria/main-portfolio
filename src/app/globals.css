@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-nunito: "Nunito", sans-serif;
+  --font-nunito-sans: "Nunitosans", sans-serif;
+  --font-quicksand: "Quicksand", sans-serif;
+}
+
+@layer components {
+  .hover-underline {
+    @apply relative inline-block after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:h-0.5 after:w-0 after:bg-current after:rounded-full after:transition-all after:duration-200 hover:after:left-0 hover:after:w-full;
+  }
+}
+
+.blob {
+  /* border-radius: 60% 100% 70% 100% / 90% 70% 100% 80%; */
+  border-radius: 60% 100% 70% 100% / 90% 70% 100% 80%;
+  /* animation: blob-animation 7s linear infinite alternate-reverse; */
+}
+
+@keyframes blob-animation {
+  /* 0% {
+    border-radius: 100% 50% 100% 70% / 100% 70% 70% 50%;
+  } */
+
+  /* 50% {
+    border-radius: 100% 50% 80% 50% / 90% 90% 85% 80%;
+  } */
+
+  /* 100% {
+    border-radius: 90% 70% 100% 50% / 80% 90% 100% 50%;
+  } */
+}
