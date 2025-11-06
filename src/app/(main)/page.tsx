@@ -1,13 +1,15 @@
+import Image from "next/image";
+import type { Metadata } from "next";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope as farEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe as fasGlobe } from "@fortawesome/free-solid-svg-icons";
 import { faCode as fasCode } from "@fortawesome/free-solid-svg-icons";
 import { faArrowUpRightFromSquare as fasArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import { faArrowUp as fasArrowUp } from "@fortawesome/free-solid-svg-icons";
-import Image from "next/image";
-import { Timeline, TimelineData } from "./components";
-import type { Metadata } from "next";
+
+import { Footer, Header } from "./_components/layout";
+import { Timeline, TimelineData } from "./_components/ui";
 
 const experiences: TimelineData[] = [
   {
@@ -89,7 +91,7 @@ export const metadata: Metadata = {
   description: "Menampilkan portofolio saya",
 };
 
-export default function Home() {
+export default function Page() {
   return (
     <>
       <Header />
@@ -252,13 +254,13 @@ export default function Home() {
                   className="absolute inset-0 flex justify-center items-center gap-10 bg-black/40 opacity-0 group-hover:opacity-100 
                             transition-opacity duration-300"
                 >
-                  <span className="flex items-center gap-2 text-white font-semibold cursor-pointer hover-underline hover:text-gray-950">
+                  <span className="flex items-center gap-2 text-white font-semibold cursor-pointer hover-underline">
                     <p className="text-lg">Kode</p>
                     <i>
                       <FontAwesomeIcon icon={fasCode} className="text-base" />
                     </i>
                   </span>
-                  <span className="flex items-center gap-2 text-white font-semibold cursor-pointer">
+                  <span className="flex items-center gap-2 text-white font-semibold cursor-pointer hover-underline">
                     <p className="text-lg">Demo</p>
                     <i>
                       <FontAwesomeIcon
@@ -286,137 +288,3 @@ export default function Home() {
     </>
   );
 }
-
-const Header = () => {
-  return (
-    <>
-      <header className="px-24 font-nunito">
-        <nav
-          aria-label="Header navigation"
-          className="flex justify-between items-center h-14 px-6 border-b border-gray-300"
-        >
-          <h1 className="text-gray-950 text-xl font-bold">DamaiPs</h1>
-          <ul className="flex gap-x-7 text-gray-700">
-            <li>
-              <a
-                href="#beranda"
-                className="hover-underline hover:text-gray-950"
-              >
-                Beranda
-              </a>
-            </li>
-            <li>
-              <a
-                href="#tentang"
-                className="hover-underline hover:text-gray-950"
-              >
-                Tentang Saya
-              </a>
-            </li>
-            <li>
-              <a
-                href="#portofolio"
-                className="hover-underline hover:text-gray-950"
-              >
-                Portofolio
-              </a>
-            </li>
-            <li>
-              <a href="#kontak" className="hover-underline hover:text-gray-950">
-                Kontak Saya
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-    </>
-  );
-};
-
-const Footer = () => {
-  return (
-    <>
-      <footer className="py-3 px-7 font-nunito bg-gray-50">
-        <div className="flex items-center justify-between px-10">
-          <p className="basis-1/3 text-lg text-gray-950 font-bold">DamaiPs</p>
-          <nav aria-label="Footer Navigation" className="basis-1/3">
-            <ul className="flex justify-center-safe space-x-6 text-[15px] text-gray-800 font-normal">
-              <li>
-                <a
-                  href="#beranda"
-                  className="hover-underline after:!h-[1px] hover:text-gray-950"
-                >
-                  Beranda
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#tentang"
-                  className="hover-underline after:!h-[1px] hover:text-gray-950"
-                >
-                  Tentang Saya
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#portofolio"
-                  className="hover-underline after:!h-[1px] hover:text-gray-950"
-                >
-                  Portofolio
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#kontak"
-                  className="hover-underline after:!h-[1px] hover:text-gray-950"
-                >
-                  Kontak Saya
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <a
-            // href="#top"
-            className="basis-1/3 flex justify-end items-center gap-1 text-base text-gray-950 font-bold underline underline-offset-2 decoration-2"
-          >
-            <p>Atas&nbsp;</p>
-            <i>
-              <FontAwesomeIcon icon={fasArrowUp} />
-            </i>
-          </a>
-        </div>
-        <hr className="my-3 text-gray-300" />
-        <section
-          aria-label="Social Links"
-          className="flex justify-center space-x-8 text-gray-950"
-        >
-          <a href="mailto:damai@example.com" aria-label="Email">
-            <i>
-              <FontAwesomeIcon icon={farEnvelope} />
-            </i>
-          </a>
-          <a
-            href="https://linkedin.com/in/username"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-          >
-            <i>
-              <FontAwesomeIcon icon={faLinkedinIn} />
-            </i>
-          </a>
-          <a
-            href="https://github.com/username"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-          >
-            <i>
-              <FontAwesomeIcon icon={faGithub} />
-            </i>
-          </a>
-        </section>
-      </footer>
-    </>
-  );
-};
