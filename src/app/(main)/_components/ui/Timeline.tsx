@@ -39,11 +39,11 @@ const CardTimeline = ({ data, index }: CardTimelineProps) => {
 
   return (
     <div
-      className={`${index % 2 === 0 ? "left-0" : "left-1/2"} relative w-1/2`}
+      className={`${index % 2 !== 0 ? "left-0" : "left-1/2"} relative w-1/2`}
     >
       <div
         className={`py-1.5 px-4 ${
-          index % 2 === 0
+          index % 2 !== 0
             ? "before:right-2 before:border-l-9 after:right-[9.5px] after:border-l-8 after:border-l-white"
             : "before:left-2 before:border-r-9 after:left-[9.5px] after:border-r-8 after:border-r-white"
         }
@@ -77,7 +77,7 @@ const CardTimeline = ({ data, index }: CardTimelineProps) => {
             className={`${
               cardTimelineCollapse
                 ? "max-h-0 py-0 border-t-0 overflow-hidden"
-                : "max-h-[35rem] py-2 border-t"
+                : "max-h-140 py-2 border-t"
             } basis-full flex flex-col gap-y-2.5 ps-3.5 pe-2 list-disc text-base/snug text-justify transition-all`}
           >
             {data.description.map((item) => (
