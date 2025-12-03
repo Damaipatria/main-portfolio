@@ -28,15 +28,27 @@ export default function Page() {
         <section className="flex justify-center items-center w-full h-screen">
           <form
             onSubmit={handleSubmit((data: LoginSchemaType) => {
-              console.log(data);
+              fetch("api/auth/login", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+              })
+                .then((res) => {
+                  console.log(res);
+                })
+                .catch((err) => {
+                  console.log("error");
+                });
             })}
             className="basis-2/6 flex flex-col gap-y-3 p-4 text-gray-900 border border-gray-200"
           >
             <div className="mb-3">
-              <h1 className="text-center text-xl text-gray-950 font-bold">
+              <h1 className="text-center text-2xl text-gray-950 font-bold">
                 Selamat Datang!
               </h1>
-              <p className="-mt-1 text-center text-sm text-gray-800">
+              <p className="text-center text-sm text-gray-800">
                 Silakan masuk untuk melanjutkan aktivitas Anda
               </p>
             </div>

@@ -3,7 +3,10 @@ import { Footer, Header } from "./_components/layout";
 import { headers } from "next/headers";
 
 export const metadata: Metadata = {
-  title: "My Portofolio",
+  title: {
+    default: "My Portofolio",
+    template: "My Portofolio - %s",
+  },
   description: "Menampilkan portofolio saya",
 };
 
