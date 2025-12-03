@@ -1,6 +1,11 @@
 import { AboutMeSection } from "@/app/(main)/_types";
 import clientPromise from "@/lib/mongodb";
-import { ApiResponse } from "@/types/api";
+import {
+  ApiResponse,
+  errorResponse,
+  HttpStatus,
+  successResponse,
+} from "@/types/api";
 import { NextResponse } from "next/server";
 
 export async function GET(): Promise<
@@ -9,23 +14,24 @@ export async function GET(): Promise<
   try {
     const client = await clientPromise;
     const db = client.db("portfolio_db");
-    const hero = await db
+    const aboutMe = await db
       .collection<AboutMeSection>("about_me_section")
       .findOne();
 
-    if (!hero) {
-      throw new Error("Data not found");
+    if (!aboutMe) {
+      throw new Error("Data tidak ditemukan");
     }
-
-    return NextResponse.json({
-      success: true,
-      data: hero,
-      error: "",
+    return NextResponse.json(successResponse(aboutMe, "Data ditemukan"), {
+      status: HttpStatus.OK,
     });
   } catch (error) {
-    return NextResponse.json({
-      success: false,
-      error: "Data not found",
-    });
+    return NextResponse.json(
+      errorResponse("INTERNAL_ERROR", "Server error", {
+        error: error instanceof Error ? error.message : "Unknown error",
+      }),
+      {
+        status: HttpStatus.INTERNAL_SERVER_ERROR,
+      }
+    );
   }
 }
