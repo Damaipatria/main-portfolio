@@ -23,7 +23,7 @@ export async function GET(): Promise<NextResponse<ApiResponse<HeroSection>>> {
     });
   } catch (error) {
     return NextResponse.json(
-      errorResponse("INTERNAL_ERROR", "Server error", {
+      errorResponse("INTERNAL ERROR", "Server error", {
         error: error instanceof Error ? error.message : "Unknown error",
       }),
       {

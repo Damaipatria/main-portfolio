@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
 
     if (!user) {
       return NextResponse.json(
-        errorResponse("NOT_FOUND", "Pengguna tidak ditemukan"),
+        errorResponse("NOT FOUND", "Pengguna tidak ditemukan"),
         { status: HttpStatus.NOT_FOUND }
       );
     }
@@ -48,7 +48,6 @@ export async function POST(request: NextRequest) {
             username: user.username,
             name: user.name,
           },
-          // token,
         },
         "Login berhasil"
       ),
@@ -56,17 +55,17 @@ export async function POST(request: NextRequest) {
     );
 
     response.cookies.set("accessToken", token, {
-      httpOnly: true, // Tidak bisa diakses JavaScript (lebih aman)
-      secure: process.env.NODE_ENV === "production", // Hanya HTTPS di production
-      sameSite: "lax", // Proteksi CSRF
-      maxAge: 60 * 60 * 2, // 2 jam
-      path: "/", // Cookie berlaku untuk semua path
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 60 * 7,
+      path: "/",
     });
 
     return response;
   } catch (error) {
     console.error("Error saat login:", error);
-    return NextResponse.json(errorResponse("INTERNAL_ERROR", "Server error"), {
+    return NextResponse.json(errorResponse("INTERNAL ERROR", "Server error"), {
       status: HttpStatus.INTERNAL_SERVER_ERROR,
     });
   }

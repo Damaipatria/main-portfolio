@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { LoginSchema, LoginSchemaType } from "./schema/login-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -12,6 +13,8 @@ import { faEyeSlash as fasEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Input } from "@/components";
 
 export default function Page() {
+  const router = useRouter();
+
   const [passwordShow, setPasswordShow] = useState<boolean>(false);
 
   const {
@@ -27,20 +30,20 @@ export default function Page() {
       <main className="font-nunito">
         <section className="flex justify-center items-center w-full h-screen">
           <form
-            onSubmit={handleSubmit((data: LoginSchemaType) => {
-              fetch("api/auth/login", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-              })
-                .then((res) => {
-                  console.log(res);
-                })
-                .catch((err) => {
-                  console.log("error");
+            onSubmit={handleSubmit(async (data: LoginSchemaType) => {
+              try {
+                const response = await fetch("api/auth/login", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(data),
                 });
+                const result = await response.json();
+                if (result?.success) return router.push("/admin");
+              } catch (err) {
+                console.log("error", err);
+              }
             })}
             className="basis-2/6 flex flex-col gap-y-3 p-4 text-gray-900 border border-gray-200"
           >

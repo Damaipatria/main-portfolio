@@ -26,7 +26,7 @@ export async function GET(): Promise<
     });
   } catch (error) {
     return NextResponse.json(
-      errorResponse("INTERNAL_ERROR", "Server error", {
+      errorResponse("INTERNAL ERROR", "Server error", {
         error: error instanceof Error ? error.message : "Unknown error",
       }),
       {

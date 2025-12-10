@@ -1,10 +1,10 @@
 export const ErrorCodes = {
   // Errors (4xx)
-  BAD_REQUEST: "BAD_REQUEST",
+  BAD_REQUEST: "BAD REQUEST",
   UNAUTHORIZED: "UNAUTHORIZED",
-  NOT_FOUND: "NOT_FOUND",
+  NOT_FOUND: "NOT FOUND",
   // Errors (5xx)
-  INTERNAL_ERROR: "INTERNAL_ERROR",
+  INTERNAL_ERROR: "INTERNAL ERROR",
 } as const;
 
 export const HttpStatus = {
